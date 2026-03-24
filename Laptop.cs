@@ -1,0 +1,4 @@
+class Laptop : Asset
+{
+    
+}
