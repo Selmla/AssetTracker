@@ -121,15 +121,24 @@ void ShowAssets(AssetService service)
         var asset = sortedAssets[i];
         var threeYearDate = asset.PurchaseDate.AddYears(3); //target date for 3 years after purchase
         var timeFromThreeYears = threeYearDate - DateTime.Now; //time from 3 years span to now
-        string warning = timeFromThreeYears <= TimeSpan.FromDays(90)
-            || timeFromThreeYears < TimeSpan.Zero
-            ? " (RED)"
-            : string.Empty;
+        bool isRed = timeFromThreeYears <= TimeSpan.FromDays(90) 
+            || timeFromThreeYears < TimeSpan.Zero;
 
         Console.WriteLine($"\nAsset {i + 1}:");
         Console.WriteLine($"  Type: {asset.GetType().Name}");
         Console.WriteLine($"  Model: {asset.ModelName}");
         Console.WriteLine($"  Price: ${asset.Price}");
-        Console.WriteLine($"  Purchase Date: {asset.PurchaseDate:yyyy-MM-dd}{warning}");
+
+        if (isRed)
+        {
+            var previousColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"  Purchase Date: {asset.PurchaseDate:yyyy-MM-dd}");
+            Console.ForegroundColor = previousColor;
+        }
+        else
+        {
+            Console.WriteLine($"  Purchase Date: {asset.PurchaseDate:yyyy-MM-dd}");
+        }
     }
 }
