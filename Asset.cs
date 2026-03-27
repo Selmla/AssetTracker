@@ -1,6 +1,6 @@
 class Asset
 {
-    private string ModelName {get; set;} = "";
-    private decimal Price {get; set;}
-    private DateTime PurchaseDate {get; set;}
+    public string ModelName {get; set;} = "";
+    public decimal Price {get; set;}
+    public DateTime PurchaseDate {get; set;}
 }

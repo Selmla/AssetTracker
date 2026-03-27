@@ -6,4 +6,9 @@ class AssetService
     {
         assets.Add(asset);
     }
+
+    public List<Asset> GetAllAssets()
+    {
+        return assets;
+    }
 }
